@@ -10,7 +10,7 @@ class ArithParser(override val input: ParserInput) extends Parser {
   def tmTrue = rule { Map("true" -> True) }
   def tmFalse = rule { Map("false" -> False) }
   def tmIf = rule {
-    "if" ~ BooleanTerm ~ "then" ~ BooleanTerm ~ "else" ~ BooleanTerm ~> ((t1: Term, t2: Term, t3: Term) => If(t1, t2, t3))
+    "if" ~ BooleanTerm ~ "then" ~ ArithInput ~ "else" ~ ArithInput ~> ((t1: Term, t2: Term, t3: Term) => If(t1, t2, t3))
   }
   def BooleanTerm: Rule1[Term] = rule { WhiteSpace ~ (tmTrue | tmFalse | tmIf) ~ WhiteSpace }
 
